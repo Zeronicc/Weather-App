@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Weather-App</title>
+</head>
+<body>
+    <img src="img/background.png" id="background-pic" alt="gta sunset">
+    <form>
+        <button id="submit-btn"></button>
+        <input type="text" name="search" id="search" placeholder="Search City or Zip Code">
+        <button id="unit-change">Change Units</button>
+
+    </form>
+    <div class="info-container">
+        <h1 id="location">Location</h1>
+        <div class="container">
+        <h2>Last Updated:</h2>
+        <h2 id="last-updated">202020</h2>
+        </div>
+        <div class="temp-container">
+            <h2 id="temperature">90</h2>
+            <img alt="temperatureUnit" id="temp-icon">
+        </div>
+    
+        <div class="condition-container">
+            <img id="condition-icon" alt="weather condition">
+            <h2 id="condition">raining</h2>
+        </div>
+        <div class="wind-container">
+            <h2 id="wind">10</h2>
+            <h2 id="wind-unit">MPH</h2>
+        </div>
+        <div class="today-forecast">
+
+        </div>
+        <div class="week-forecast">
+
+        </div>
+
+
+    </div>
+</body>
+<script src="main.js"></script>
+</html>
