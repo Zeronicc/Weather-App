@@ -9,6 +9,7 @@
 </head>
 <body>
     <img src="img/background.png" id="background-pic" alt="gta sunset">
+    <img src="img/loading.gif" class="loading-icon" alt="loading">
     <form>
         <button id="submit-btn"></button>
         <input type="text" name="search" id="search" placeholder="Search City or Zip Code">
@@ -25,23 +26,56 @@
             <h2 id="temperature">90</h2>
             <img alt="temperatureUnit" id="temp-icon">
         </div>
-    
         <div class="condition-container">
             <img id="condition-icon" alt="weather condition">
             <h2 id="condition">raining</h2>
         </div>
         <div class="wind-container">
+            <img src="img/wind.png" alt="wind">
             <h2 id="wind">10</h2>
             <h2 id="wind-unit">MPH</h2>
         </div>
         <div class="today-forecast">
-
+            <div class="hour-forecast">
+                <div></div>
+                <div class='hour-condition-icon' ></div>
+                <div class="temp-low-hour"></div>
+                <div class="temp-high-hour"></div>
+            </div>
+            <div class="hour-forecast">
+                <div></div>
+                <div class='hour-condition-icon' ></div>
+                <div class="temp-low-hour"></div>
+                <div class="temp-high-hour"></div>
+            </div>
+            <div class="hour-forecast">
+                <div></div>
+                <div class="hour-condition-icon"></div>
+                <div class="temp-low-hour"></div>
+                <div class="temp-high-hour"></div>
+            </div>
+            <div class="hour-forecast">
+                <div></div>
+                <div class='hour-condition-icon' ></div>
+                <div class="temp-low-hour"></div>
+                <div class="temp-high-hour"></div>
+            </div>
+            <div class="hour-forecast">
+                <div class="time-forecast"></div>
+                <div class='hour-condition-icon' ></div>
+                <div class="temp-low-hour-container">
+                    <img src="img/circle.png" alt="circle-degree">
+                    <div class="temp-low-hour"></div>
+                </div>
+                <div class="temp-high-hour-container">
+                    <img src="img/circle.png" alt="circle-degree">
+                    <div class="temp-high-hour"></div>
+                </div>
+            </div>
+           
         </div>
         <div class="week-forecast">
-
         </div>
-
-
     </div>
 </body>
 <script src="main.js"></script>

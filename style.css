@@ -17,6 +17,15 @@ body{
     filter: blur(10px);
 }
 
+.loading-icon{
+    position: absolute;
+    display: none;
+    z-index: 1;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
+
 form{
     display: flex;
     color: white;
@@ -61,7 +70,7 @@ input#search::placeholder{color: white;}
 
 
 .info-container{
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     width: 80%;
@@ -70,9 +79,13 @@ input#search::placeholder{color: white;}
     font-size: 1.3em;
 }
 
+.toggle{
+    display: flex;
+}
+
 
 img#condition-icon{
-    width: 10%;
+    max-width: fit-content;
 }
 
 
@@ -83,7 +96,7 @@ img#condition-icon{
 }
 
 #temp-icon{
-    height: 45px;
+    height: 55px;
     position: relative;
     top: 20px;
 }
@@ -97,5 +110,6 @@ img#condition-icon{
 
 .wind-container{
     display: flex;
+    align-items: center;
     gap: 10px;
 }
