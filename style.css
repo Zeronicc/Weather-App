@@ -113,3 +113,29 @@ img#condition-icon{
     align-items: center;
     gap: 10px;
 }
+
+.today-forecast{
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    width: 100%;
+    margin: 25px 0px;
+    flex-wrap: wrap;
+}
+.hour-forecast{
+    width: max(130px, 16%);
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.temp-hour-container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 5px;
+}
+
+.temp-hour-container img{
+    width: 13px;
+    height: 13px;
+}
