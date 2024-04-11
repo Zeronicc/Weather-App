@@ -53,14 +53,18 @@ function currentData(data){
 
 function hourForecast(data) {
     let i = 0;
+    let day = 0;
     document.querySelectorAll('.time-forecast').forEach((timeDiv) => {
+        if (i == 23){ i = 0; day = 1}
         //Same code inside the loop
-        timeElement = formatTime(new Date(data.forecast.forecastday[0].hour[i++].time));
-
-        for(i; formatTime(new Date()) > timeElement; i++){
-            timeElement = data.forecast.forecastday[0].hour[i].time
-            timeElement = new Date(timeElement)
-            timeElement = formatTime(timeElement)
+        timeElement = formatTime(new Date(data.forecast.forecastday[day].hour[i++].time));
+        console.log(timeElement)
+        for(i; new Date() > timeElement; i++){
+            timeElement = data.forecast.forecastday[day].hour[i].time;
+            timeElement = new Date(timeElement);
+            timeElement = formatTime(timeElement);
+            console.log(timeElement)
+            
         };
         
         dataForecast(data, timeDiv, i);
@@ -103,21 +107,26 @@ function formatTime(date){
 }
 
 function dataForecast(data, timeDiv, i){
+    let day = 0;
+    if(i == 23) {day = 1; i = 0}
     nextElement = timeDiv.nextElementSibling;
-    nextElement.src = data.forecast.forecastday[0].hour[i].condition.icon;
+    console.log(i)
+    nextElement.src = data.forecast.forecastday[day].hour[i].condition.icon;
     nextElement = nextElement.nextElementSibling;
     nextElement = nextElement.firstElementChild;
-    (units !== 'mph-f') ? nextElement.textContent = data.forecast.forecastday[0].hour[i].temp_c 
-    :nextElement.textContent = data.forecast.forecastday[0].hour[i].temp_f
+    (units !== 'mph-f') ? nextElement.textContent = data.forecast.forecastday[day].hour[i].temp_c 
+    :nextElement.textContent = data.forecast.forecastday[day].hour[i].temp_f
 }
 
 function dayForecast(data) {
     let i = 0;
+    const showDate = {weekday:'short', month: 'long', day:'numeric'}
     document.querySelectorAll('.day-forecast').forEach(dayDiv => {
-        dayDiv.textContent = data.forecast.forecastday[i].date
+        
+        dayDiv.textContent = new Date(data.forecast.forecastday[i].date.replace(/-/g, '\/')).toLocaleDateString("en-US", showDate)
         dayDiv = dayDiv.nextElementSibling
         dayDiv.src = data.forecast.forecastday[i].day.condition.icon;
-        dayDiv = dayDiv.nextElementSibling.children[1];
+        dayDiv = dayDiv.nextElementSibling.children[0].children[1];
         (units !== 'mph-f') ?dayDiv.textContent = data.forecast.forecastday[i].day.mintemp_c
         :dayDiv.textContent = data.forecast.forecastday[i].day.mintemp_f;
         dayDiv = dayDiv.parentElement.nextElementSibling.children[1];

@@ -77,6 +77,7 @@ input#search::placeholder{color: white;}
     margin: 0px auto;
     color: white;
     font-size: 1.3em;
+    margin-top: 5%;
 }
 
 .toggle{
@@ -114,7 +115,7 @@ img#condition-icon{
     gap: 10px;
 }
 
-.today-forecast{
+.today-forecast, .week-forecast{
     display: flex;
     justify-content: center;
     gap: 25px;
@@ -122,20 +123,45 @@ img#condition-icon{
     margin: 25px 0px;
     flex-wrap: wrap;
 }
-.hour-forecast{
+.hour-forecast, .day-forecast-container{
     width: max(130px, 16%);
     text-align: center;
     font-size: 1.5em;
 }
 
-.temp-hour-container{
+.temp-hour-container, .temp-low-day-container, .temp-high-day-container{
     display: flex;
     justify-content: center;
     width: 100%;
     gap: 5px;
 }
 
-.temp-hour-container img{
-    width: 13px;
-    height: 13px;
+.temp-hour-container img, #circle-degree{
+    width: 15px;
+    height: 15px;
+}
+
+.day-forecast-container{
+    width: max(233px, 25%);
+}
+
+.temp-day-container{
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+.temp-low-day-container, .temp-high-day-container{
+    align-items: center;
+    width: fit-content;
+}
+
+.temp-low-day-container img, .temp-high-day-container img{
+    width: 25px;
+    height: 25px;
+}
+
+#circle-degree{
+    position: relative;
+    bottom: 10px;
 }
