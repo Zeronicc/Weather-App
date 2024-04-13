@@ -10,12 +10,12 @@ window.onload = (e => {
 document.getElementById('submit-btn').addEventListener('click', (e) => {
     e.preventDefault();
     getData(document.getElementById('search').value);
+    loading();
 });
 
 document.getElementById('unit-change').addEventListener('click', e => {
     e.preventDefault();
     units == 'mph-f' ? units = 'kph-c' : units = 'mph-f'
-    console.log(data)
     setUnits(data)
 });
 
@@ -29,7 +29,10 @@ async function getData(location){
         console.log(data)
         return data
     } catch (error) {
-        console.log(error)
+        loading();
+        // if(error == TypeError)
+        return console.log(error.name)
+        
     }
 }
 
@@ -44,9 +47,10 @@ function logData(data){
     setUnits(data)
 }
 
-function currentData(data){
+function currentData(data){ 
+    setInterval(() =>  document.getElementById('current-time').textContent = new Date().toLocaleString("en-US", {month: 'long', day: 'numeric', hour12: 'false'}), 1000)
     document.getElementById('location').textContent = data.location.name
-    document.getElementById('last-updated').textContent = data.current.last_updated
+    document.getElementById('current-time').textContent = undefined
     document.getElementById('condition').textContent = data.current.condition.text
     document.getElementById('condition-icon').src = data.current.condition.icon
 }
@@ -55,49 +59,37 @@ function hourForecast(data) {
     let i = 0;
     let day = 0;
     document.querySelectorAll('.time-forecast').forEach((timeDiv) => {
-        if (i == 23){ i = 0; day = 1}
-        //Same code inside the loop
-        timeElement = formatTime(new Date(data.forecast.forecastday[day].hour[i++].time));
-        console.log(timeElement)
+        if(i == 24) {day = 1; i = 0}
+
+        timeElement = new Date(`${data.forecast.forecastday[day]}, ${data.forecast.forecastday[day].hour[i++].time}`);
         for(i; new Date() > timeElement; i++){
-            timeElement = data.forecast.forecastday[day].hour[i].time;
-            timeElement = new Date(timeElement);
-            timeElement = formatTime(timeElement);
-            console.log(timeElement)
-            
+            timeElement = new Date(`${data.forecast.forecastday[day]}, ${data.forecast.forecastday[day].hour[i].time}`);
         };
-        
-        dataForecast(data, timeDiv, i);
-
-
+        hourDataForecast(data, timeDiv, i);
         if(units == 'mph-f') {
-            timeElement = new Date(`July 17, ${parseFloat(timeElement)}:00`).toLocaleTimeString()
-            timeElement = timeElement.replace('00:', '')
-        };
-        timeDiv.textContent = timeElement;
+            timeElement = timeElement.toLocaleTimeString()
+            timeElement = timeElement.replace('00:', '');
+            return timeDiv.textContent = timeElement
+        } else {timeDiv.textContent = formatTime(timeElement);}
 });
 };
 
 function setUnits(data){
     if(units == 'mph-f'){
-        document.getElementById('temperature').textContent = data.current.temp_f
-        document.getElementById('wind').textContent = data.current.wind_mph
+        document.getElementById('temperature').textContent = Math.round(data.current.temp_f)
+        document.getElementById('wind').textContent = Math.round(data.current.wind_mph)
         document.getElementById('wind-unit').textContent = 'MPH'
         document.getElementById('temp-icon').src = 'img/fahrenheit.png'
         hourForecast(data);
         dayForecast(data)
-
     }else {
-        document.getElementById('temperature').textContent = data.current.temp_c
-        document.getElementById('wind').textContent = data.current.wind_kph
+        document.getElementById('temperature').textContent = Math.round(data.current.temp_c)
+        document.getElementById('wind').textContent = Math.round(data.current.wind_kph)
         document.getElementById('wind-unit').textContent = 'KPH'
         document.getElementById('temp-icon').src = 'img/celsius.png'
         hourForecast(data);
         dayForecast(data)
-
     }
-
-
 }
 
 function formatTime(date){
@@ -106,33 +98,31 @@ function formatTime(date){
     return hour + ':' + minutes
 }
 
-function dataForecast(data, timeDiv, i){
+function hourDataForecast(data, timeDiv, i){
     let day = 0;
-    if(i == 23) {day = 1; i = 0}
+    if(i == 24) {day = 1; i = 0}
     nextElement = timeDiv.nextElementSibling;
-    console.log(i)
+    
     nextElement.src = data.forecast.forecastday[day].hour[i].condition.icon;
     nextElement = nextElement.nextElementSibling;
     nextElement = nextElement.firstElementChild;
-    (units !== 'mph-f') ? nextElement.textContent = data.forecast.forecastday[day].hour[i].temp_c 
-    :nextElement.textContent = data.forecast.forecastday[day].hour[i].temp_f
+    (units !== 'mph-f') ? nextElement.textContent = Math.round(data.forecast.forecastday[day].hour[i].temp_c) 
+    :nextElement.textContent = Math.round(data.forecast.forecastday[day].hour[i].temp_f)
 }
 
 function dayForecast(data) {
     let i = 0;
     const showDate = {weekday:'short', month: 'long', day:'numeric'}
     document.querySelectorAll('.day-forecast').forEach(dayDiv => {
-        
         dayDiv.textContent = new Date(data.forecast.forecastday[i].date.replace(/-/g, '\/')).toLocaleDateString("en-US", showDate)
         dayDiv = dayDiv.nextElementSibling
         dayDiv.src = data.forecast.forecastday[i].day.condition.icon;
         dayDiv = dayDiv.nextElementSibling.children[0].children[1];
-        (units !== 'mph-f') ?dayDiv.textContent = data.forecast.forecastday[i].day.mintemp_c
-        :dayDiv.textContent = data.forecast.forecastday[i].day.mintemp_f;
+        (units !== 'mph-f') ?dayDiv.textContent = Math.round(data.forecast.forecastday[i].day.mintemp_c)
+        :dayDiv.textContent = Math.round(data.forecast.forecastday[i].day.mintemp_f);
         dayDiv = dayDiv.parentElement.nextElementSibling.children[1];
-        (units !== 'mph-f') ?dayDiv.textContent = data.forecast.forecastday[i].day.maxtemp_c
-        :dayDiv.textContent = data.forecast.forecastday[i].day.maxtemp_f
+        (units !== 'mph-f') ?dayDiv.textContent = Math.round(data.forecast.forecastday[i].day.maxtemp_c)
+        :dayDiv.textContent = Math.round(data.forecast.forecastday[i].day.maxtemp_f);
         i++
     })
 }
-

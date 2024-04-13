@@ -1,25 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+
 *{
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
 }
 
+
 body{
    background-color: rgb(91, 38, 37);
    overflow-x: hidden;
+   font-family: 'Nunito', sans-serif;
 }
 
 #background-pic{
-    position: absolute;
+    position: fixed;
     z-index: -1;
     height: 100%;
+    top: 0;
+    left: 0;
     width: 100%;
-    filter: blur(10px);
+    object-fit: cover;
+    object-position: center;
+    filter: blur(6px);
 }
 
 .loading-icon{
     position: absolute;
     display: none;
+    width: 100px;
     z-index: 1;
     top: 45%;
     left: 50%;
@@ -77,23 +87,22 @@ input#search::placeholder{color: white;}
     margin: 0px auto;
     color: white;
     font-size: 1.3em;
-    margin-top: 5%;
+    margin-top: 2% ;
 }
 
 .toggle{
     display: flex;
 }
 
-
-img#condition-icon{
-    max-width: fit-content;
+#location{
+    font-size: 3em;
 }
-
 
 .temp-container{
     display: flex;
     font-size: 60px;
-    gap: 7px;
+    gap: 5px;
+    
 }
 
 #temp-icon{
@@ -119,10 +128,17 @@ img#condition-icon{
     display: flex;
     justify-content: center;
     gap: 25px;
-    width: 100%;
+    width: min(100%, 1150px);
     margin: 25px 0px;
     flex-wrap: wrap;
 }
+
+.week-forecast{    
+    border-top: 1px solid white;
+    padding-top: 50px;
+    max-width: 1000px;
+}
+
 .hour-forecast, .day-forecast-container{
     width: max(130px, 16%);
     text-align: center;
@@ -147,7 +163,7 @@ img#condition-icon{
 
 .temp-day-container{
     display: flex;
-    gap: 5px;
+    gap: 15px;
     justify-content: center;
 }
 
@@ -164,4 +180,51 @@ img#condition-icon{
 #circle-degree{
     position: relative;
     bottom: 10px;
+}
+
+
+@media only screen and (max-width: 960px) {
+
+    *{font-size: 0.94em;}
+    img{height: 50px;}
+    form{
+        width: 90%; margin: 0px auto;
+    }
+    input#search{
+        font-size: 14px; width: 65%;
+    }
+    #unit-change{
+        font-size: 14px;
+        width: 20%;
+        padding: 7px 5px;
+    }
+    #location{font-size: 2.50em; text-align: center;}
+    #current-time{font-size: 1.50em;}
+    #temp-icon{
+        top: 10px;
+        right: 5px;
+        height: 40px;
+    }
+    #condition, .wind-container{font-size: 1.5em;}
+    .wind-container img{height: 33px;}
+    .today-forecast, .week-forecast{
+        flex-direction: column;
+        margin:  25px 0px 0px 0px;
+        gap: 18px;
+    }
+    .hour-forecast, .day-forecast-container{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        align-items: center;
+    }
+
+    .time-forecast, .day-forecast{text-align: left;}
+    .week-forecast{padding: 27px 0px;}
+    .day-forecast-container{margin-bottom: 15px;}
+    .temp-hour-container{width: fit-content;}
+    .hour-condition-icon{margin: 0px 7px 0px auto;}
+    .temp-day-container{flex-direction: column-reverse;}
+
+
 }
