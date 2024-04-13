@@ -61,16 +61,15 @@ function hourForecast(data) {
     let day = 0;
     document.querySelectorAll('.time-forecast').forEach((timeDiv) => {
         if(i == 24) {day = 1; i = 0}
-
-        timeElement = new Date(`${data.forecast.forecastday[day]}, ${data.forecast.forecastday[day].hour[i++].time}`);
-        for(i; new Date() > timeElement; i++){
-            timeElement = new Date(`${data.forecast.forecastday[day]}, ${data.forecast.forecastday[day].hour[i].time}`);
+        let timeString = `${data.forecast.forecastday[day]} ${data.forecast.forecastday[day].hour[i++].time}`;
+        let timeElement = new Date(timeString)
+        while( new Date() > timeElement){
+            timeString = `${data.forecast.forecastday[day]} ${data.forecast.forecastday[day].hour[i++].time}`;
+            timeElement = new Date(timeString);
         };
         hourDataForecast(data, timeDiv, i);
         if(units == 'mph-f') {
-            timeElement = timeElement.toLocaleTimeString()
-            timeElement = timeElement.replace('00:', '');
-            return timeDiv.textContent = timeElement
+            timeDiv.textContent = timeElement.toLocaleTimeString([], {hour:'2-digit', minute: '2-digit'})
         } else {timeDiv.textContent = formatTime(timeElement);}
 });
 };
@@ -94,9 +93,7 @@ function setUnits(data){
 }
 
 function formatTime(date){
-    hour = (date.getHours()<10?'0':'') + date.getHours();
-    minutes = (date.getMinutes()<10?'0':'') + date.getMinutes();
-    return hour + ':' + minutes
+    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
 }
 
 function hourDataForecast(data, timeDiv, i){
