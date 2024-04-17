@@ -9,13 +9,13 @@
 
 
 body{
-   background-color: rgb(91, 38, 37);
    overflow-x: hidden;
    font-family: 'Nunito', sans-serif;
 }
 
 #background-pic{
     position: fixed;
+    background-color: rgb(91, 38, 37);
     z-index: -1;
     height: 100%;
     top: 0;
