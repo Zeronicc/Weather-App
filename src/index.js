@@ -1,6 +1,6 @@
 import './style.css';
-import celsiusDegree from './img/celsius.png';
-import fahrenheitDegree from './img/fahrenheit.png'
+import celsiusDegree from '/dist/img/celsius.png';
+import fahrenheitDegree from '/dist/img/fahrenheit.png'
 let data;
 let units = 'kph-c';
 

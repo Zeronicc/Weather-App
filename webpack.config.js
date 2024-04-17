@@ -16,11 +16,7 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        include: path.resolve(__dirname, 'src/img'),
-        type: 'asset/resource',
-        generator: {
-          filename: 'img/[name][ext][query]',
-        },
+        type: 'asset/resource', // Use asset modules to handle images
       },
       {
         test: /\.(?:js|mjs|cjs)$/,

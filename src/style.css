@@ -58,7 +58,7 @@ input#search{
     background-color: transparent;
 }
 #submit-btn{
-    background-image: url('img/magnify.svg');
+    background-image: url('/dist/img/magnify.svg');
     background-repeat: no-repeat;
     background-size: 100%;
     width: 32px;
