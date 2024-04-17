@@ -1,5 +1,7 @@
+import './style.css';
+import celsiusDegree from './img/celsius.png';
+import fahrenheitDegree from './img/fahrenheit.png'
 let data;
-let timeElement = '00:00';
 let units = 'kph-c';
 
 window.onload = (e => {
@@ -32,7 +34,7 @@ async function getData(location){
     } catch (error) {
         loading();
         // if(error == TypeError)
-        return console.log(error.name)
+        return console.log(error)
         
     }
 }
@@ -45,11 +47,14 @@ function loading(){
 
 function logData(data){ 
     currentData(data)
+
     setUnits(data)
+
+
 }
 
 function currentData(data){ 
-    setInterval(() =>  document.getElementById('current-time').textContent = new Date().toLocaleString("en-US", {month: 'long', day: 'numeric', hour12: 'false'}), 1000)
+    setInterval(() =>  document.getElementById('current-time').textContent = new Date().toLocaleString("en-US", {month: 'long', day: 'numeric', hour12: 'false'}), 1000);
     document.getElementById('location').textContent = data.location.name
     document.getElementById('current-time').textContent = undefined
     document.getElementById('condition').textContent = data.current.condition.text
@@ -79,14 +84,16 @@ function setUnits(data){
         document.getElementById('temperature').textContent = Math.round(data.current.temp_f)
         document.getElementById('wind').textContent = Math.round(data.current.wind_mph)
         document.getElementById('wind-unit').textContent = 'MPH'
-        document.getElementById('temp-icon').src = 'img/fahrenheit.png'
+        document.getElementById('temp-icon').src = fahrenheitDegree
         hourForecast(data);
         dayForecast(data)
     }else {
         document.getElementById('temperature').textContent = Math.round(data.current.temp_c)
         document.getElementById('wind').textContent = Math.round(data.current.wind_kph)
-        document.getElementById('wind-unit').textContent = 'KPH'
-        document.getElementById('temp-icon').src = 'img/celsius.png'
+        document.getElementById('wind-unit').textContent = 'KPH' 
+
+        document.getElementById('temp-icon').src = celsiusDegree
+
         hourForecast(data);
         dayForecast(data)
     }
@@ -98,6 +105,7 @@ function formatTime(date){
 
 function hourDataForecast(data, timeDiv, i){
     let day = 0;
+    let nextElement;
     if(i == 24) {day = 1; i = 0}
     nextElement = timeDiv.nextElementSibling;
     
