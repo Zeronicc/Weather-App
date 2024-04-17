@@ -16,7 +16,11 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/inline',
+        include: path.resolve(__dirname, 'src/img'),
+        type: 'asset/resource',
+        generator: {
+          filename: 'img/[name][ext][query]',
+        },
       },
       {
         test: /\.(?:js|mjs|cjs)$/,
