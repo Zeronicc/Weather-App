@@ -66,11 +66,14 @@ function hourForecast(data) {
     let day = 0;
     document.querySelectorAll('.time-forecast').forEach((timeDiv) => {
         if(i == 24) {day = 1; i = 0}
-        let timeString = `${data.forecast.forecastday[day]} ${data.forecast.forecastday[day].hour[i++].time}`;
-        let timeElement = new Date(timeString)
+        let timeString = data.forecast.forecastday[day].hour[i++].time;
+        let dateTimeString = `${timeString}`;
+        let timeElement = new Date(dateTimeString);
+        console.log()
         while( new Date() > timeElement){
-            timeString = `${data.forecast.forecastday[day]} ${data.forecast.forecastday[day].hour[i++].time}`;
-            timeElement = new Date(timeString);
+             timeString = data.forecast.forecastday[day].hour[i++].time;
+             dateTimeString = `${timeString}`;
+             timeElement = new Date(dateTimeString);
         };
         hourDataForecast(data, timeDiv, i);
         if(units == 'mph-f') {
