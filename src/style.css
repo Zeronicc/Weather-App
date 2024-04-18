@@ -9,19 +9,20 @@
 
 
 body{
-   overflow-x: hidden;
+   background-color: rgb(91, 38, 37);
    font-family: 'Nunito', sans-serif;
 }
 
 #background-pic{
     position: fixed;
-    background-color: rgb(91, 38, 37);
     z-index: -1;
     height: 100%;
     top: 0;
     left: 0;
     width: 100%;
+    -webkit-object-fit: cover;
     object-fit: cover;
+    -webkit-object-position: center;
     object-position: center;
     filter: blur(6px);
 }
