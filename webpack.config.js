@@ -16,7 +16,8 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource', // Use asset modules to handle images
+        type: 'asset/resource',
+       
       },
       {
         test: /\.(?:js|mjs|cjs)$/,
