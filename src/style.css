@@ -1,12 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
-
 *{
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
 }
-
 
 body{
    background-color: transparent;
@@ -59,6 +57,7 @@ input#search{
     border-radius: 18px;
     background-color: transparent;
 }
+
 #submit-btn{
     background-image: url('/dist/img/magnify.svg');
     background-repeat: no-repeat;
@@ -78,9 +77,7 @@ input#search::placeholder{color: white;}
     color: white;
     border: 1px solid white;
     border-radius: 18px;
-
 }
-
 
 .info-container{
     display: none;
@@ -93,19 +90,14 @@ input#search::placeholder{color: white;}
     margin-top: 2% ;
 }
 
-.toggle{
-    display: flex;
-}
+.toggle{display: flex;}
 
-#location{
-    font-size: 3em;
-}
+#location{font-size: 3em;}
 
 .temp-container{
     display: flex;
     font-size: 60px;
     gap: 5px;
-    
 }
 
 #temp-icon{
@@ -160,9 +152,7 @@ input#search::placeholder{color: white;}
     height: 15px;
 }
 
-.day-forecast-container{
-    width: max(233px, 25%);
-}
+.day-forecast-container{width: max(233px, 25%);}
 
 .temp-day-container{
     display: flex;
@@ -189,12 +179,16 @@ input#search::placeholder{color: white;}
 @media only screen and (max-width: 960px) {
 
     *{font-size: 0.94em;}
+
     img{height: 50px;}
+
     form{
-        width: 90%; margin: 0px auto;
+        width: 90%; 
+        margin: 0px auto;
     }
     input#search{
-        font-size: 14px; width: 65%;
+        font-size: 14px; 
+        width: 65%;
     }
     #unit-change{
         font-size: 14px;
@@ -202,14 +196,18 @@ input#search::placeholder{color: white;}
         padding: 7px 5px;
     }
     #location{font-size: 2.50em; text-align: center;}
+
     #current-time{font-size: 1.50em;}
+
     #temp-icon{
         top: 10px;
         right: 5px;
         height: 40px;
     }
     #condition, .wind-container{font-size: 1.5em;}
+
     .wind-container img{height: 33px;}
+
     .today-forecast, .week-forecast{
         flex-direction: column;
         margin:  25px 0px 0px 0px;
@@ -228,6 +226,4 @@ input#search::placeholder{color: white;}
     .temp-hour-container{width: fit-content;}
     .hour-condition-icon{margin: 0px 7px 0px auto;}
     .temp-day-container{flex-direction: column-reverse;}
-
-
 }
