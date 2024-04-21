@@ -34,7 +34,6 @@ async function getData(location){
         return data
     } catch (error) {
         loading();
-        // if(error == TypeError)
         return console.log(error)
     }
 }
