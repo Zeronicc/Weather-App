@@ -1,5 +1,5 @@
 # Weather-App
-Live Preview: [Click Here](https://zeronicc.github.io/Weather-App/)
+Live Preview: [Click Here](https://freddster14.github.io/Weather-App/)
 ## Technologies Used
 
 * JavaScript
